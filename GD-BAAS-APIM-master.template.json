@@ -1,70 +1,31 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "publisherEmail": {
-      "type": "string",
-      "minLength": 1,
-      "metadata": {
-        "description": "APIM service"
-      }
-    },
-    "publisherName": {
-      "type": "string",
-      "minLength": 1,
-      "metadata": {
-        "description": "Subbu"
-      }
-    },
-    "sku": {
-      "type": "string",
-      "defaultValue": "Developer",
-      "allowedValues": [
-        "Developer",
-        "Standard",
-        "Premium"
-      ],
-      "metadata": {
-        "description": "The pricing tier of this API Management service"
-      }
-    },
-    "skuCount": {
-      "type": "string",
-      "defaultValue": "1",
-      "allowedValues": [
-        "1",
-        "2"
-      ],
-      "metadata": {
-        "description": "The instance size of this API Management service."
-      }
-    },
-    "location": {
-      "type": "string",
-	  "minLength": 1,
-      "metadata": {
-        "description": "Location for all resources."
-      }
-    }
-  },
-  "variables": {
-    "apiManagementServiceName": "[concat('apiservice', uniqueString(resourceGroup().id))]"
-  },
-  "resources": [
-    {
-      "type": "Microsoft.ApiManagement/service",
-      "apiVersion": "2019-12-01",
-      "name": "[variables('apiManagementServiceName')]",
-      "location": "[parameters('location')]",
-      "sku": {
-        "name": "[parameters('sku')]",
-        "capacity": "[parameters('skuCount')]"
-      },
-      "properties": {
-		"location": "[parameters('location')]",
-        "publisherEmail": "[parameters('publisherEmail')]",
-        "publisherName": "[parameters('publisherName')]"
-      }
-    }
-  ]
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"ApimServiceName": {
+			"type": "string",
+			"metadata": {
+				"description": "Name of the API Management"
+			}
+		},
+		"LinkedTemplatesBaseUrl": {
+			"type": "string",
+			"metadata": {
+				"description": "Base URL of the repository that contains the generated templates"
+			}
+		},
+		"LinkedTemplatesUrlQueryString": {
+			"type": "string",
+			"metadata": {
+				"description": "Query string for the URL of the repository"
+			}
+		},
+		"PolicyXMLBaseUrl": {
+			"type": "string",
+			"metadata": {
+				"description": "Base URL of the repository that contains the generated policy files"
+			}
+		}
+	},
+	"resources": []
 }
